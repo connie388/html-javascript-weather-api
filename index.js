@@ -2,9 +2,16 @@ import { apiKey } from "./config.js";
 
 // const form = document.querySelector(".top-banner form");
 const form = document.getElementById("weather-form");
-const log = document.getElementById("city");
 const cityInput = document.getElementById("city-input");
 const msg = document.getElementById("msg");
+const city = document.getElementById("city");
+const wind = document.getElementById("wind");
+const description = document.getElementById("description");
+const temp = document.getElementById("temp");
+
+function convertion(val) {
+  return (val - 273).toFixed(2);
+}
 
 form.addEventListener("submit", searchWeather);
 
@@ -17,14 +24,22 @@ async function searchWeather(event) {
   try {
     const response = await fetch(url);
     if (response.ok) {
-      const result = await response.json();
+      const data = await response.json();
 
-      log.textContent = `Temperature: ${result.main.temp}`;
+      var nameval = data["name"];
+      var descrip = data["weather"]["0"]["description"];
+      var tempature = data["main"]["temp"];
+      var wndspd = data["wind"]["speed"];
+
+      city.innerHTML = `Weather of <span>${nameval}<span>`;
+      temp.innerHTML = `Temperature: <span>${convertion(tempature)} C</span>`;
+      description.innerHTML = `Sky Conditions: <span>${descrip}<span>`;
+      wind.innerHTML = `Wind Speed: <span>${wndspd} km/h<span>`;
     } else {
-      msg.textContent = "Please search for a valid city 😩";
+      msg.textContent = "Please search for a valid city";
     }
   } catch (err) {
-    msg.textContent = "Please search for a valid city 😩";
+    msg.textContent = "Please search for a valid city";
     console.error(err);
   }
 }
