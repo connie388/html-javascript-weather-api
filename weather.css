@@ -17,14 +17,19 @@ body {
   align-items: center;
 }
 
-input {
+#city-input {
   min-width: 300px;
+  max-width: 400px;
 }
 
-.wrapper {
-  width: 600px;
+#weather-container {
+  width: 50%;
+  min-height: 600px;
   display: flex;
   align-items: center;
   justify-content: center;
   justify-items: center;
+  border-radius: 15px;
+  color: white;
+  background-color: rgb(48, 97, 187);
 }

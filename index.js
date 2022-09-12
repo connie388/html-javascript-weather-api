@@ -30,11 +30,12 @@ async function searchWeather(event) {
       var descrip = data["weather"]["0"]["description"];
       var tempature = data["main"]["temp"];
       var wndspd = data["wind"]["speed"];
-
+      const icon = `https://openweathermap.org/img/wn/${data["weather"]["0"]["icon"]}@2x.png`;
       city.innerHTML = `Weather of <span>${nameval}<span>`;
-      temp.innerHTML = `Temperature: <span>${convertion(tempature)} C</span>`;
+      temp.innerHTML = `Temperature: <span>${tempature} <sup>°</sup>C</span>`;
       description.innerHTML = `Sky Conditions: <span>${descrip}<span>`;
       wind.innerHTML = `Wind Speed: <span>${wndspd} km/h<span>`;
+      document.querySelector(".img-weather").setAttribute("src", icon);
     } else {
       msg.textContent = "Please search for a valid city";
     }
