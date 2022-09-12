@@ -6,15 +6,13 @@
 }
 
 body {
-  --bs-body-font-family: var(--bs-font-monospace);
-  --bs-body-line-height: 1.4;
-  --bs-body-bg: var(--bs-gray-100);
-}
-
-#weather-form {
-  position: relative;
-  display: flex;
-  align-items: center;
+  font-family: sans-serif;
+  color: #3b3b4f;
+  height: 100vh;
+  /* background-image: url("./static-icon/sky.jpg"); */
+  background-image: linear-gradient(to bottom, white, lightblue, skyblue);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 #city-input {
@@ -23,13 +21,17 @@ body {
 }
 
 #weather-container {
-  width: 50%;
+  width: 700px;
   min-height: 600px;
-  display: flex;
+
+  /* use bootstrap class="d-flex justify-content-center" instead */
+  /* display: flex;
   align-items: center;
   justify-content: center;
-  justify-items: center;
+  justify-items: center; */
   border-radius: 15px;
-  color: white;
-  background-color: rgb(48, 97, 187);
+  border-style: outset;
+  box-shadow: 5px 10px 8px #888888;
+  color: #3b3b4f;
+  background-color: antiquewhite;
 }

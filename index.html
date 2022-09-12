@@ -17,12 +17,15 @@
       <h1 class="fw-semibold text-center">Today Weather</h1>
 
       <div class="d-flex justify-content-center">
-        <form id="weather-form" class="form-inline">
+        <form
+          id="weather-form"
+          class="form-inline d-flex justify-content-center"
+        >
           <div id="city-input-container" class="form-floating">
             <input
               id="city-input"
               type="text"
-              class="form-control mb-2"
+              class="form-control fs-6 mb-2"
               placeholder="Search for a city"
               autofocus
               required
@@ -33,18 +36,34 @@
           <button type="submit" class="btn btn-primary mb-2">Submit</button>
         </form>
       </div>
+      <div id="msg" class="d-flex justify-content-center fs-6">&nbsp</div>
     </div>
 
-    <div id="weather-container" class="container pt-3">
+    <div
+      id="weather-container"
+      class="container d-flex justify-content-center pt-3"
+    >
       <div>
-        <p id="city" class="fs-4"></p>
-        <p id="temp" class="fs-4"></p>
-        <p id="wind" class="fs-4"></p>
-
-        <figure>
-          <img class="img-weather" src="#" alt="weather info" />
-          <figcaption id="description"></figcaption>
-        </figure>
+        <h2 id="city" class="fw-semibold text-center"></h2>
+        <div class="d-flex align-items-center">
+          <div class="d-inline-block px-3">
+            <div id="temp" class="fs-4"></div>
+            <div id="feels-like" class="fs-6"></div>
+          </div>
+          <div class="d-inline-block px-3">
+            <div id="weather-detail" class="fs-4 text-center"></div>
+            <div id="wind" class="fs-6"></div>
+            <div id="temp-min" class="fs-6"></div>
+            <div id="temp-max" class="fs-6"></div>
+            <div id="humidity" class="fs-6"></div>
+          </div>
+        </div>
+        <div class="container d-flex justify-content-center pt-3">
+          <figure>
+            <p id="icon" class="fs-4"></p>
+            <figcaption id="description" class="fs-6"></figcaption>
+          </figure>
+        </div>
       </div>
     </div>
 
