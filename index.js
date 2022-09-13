@@ -78,9 +78,11 @@ async function searchWeather(event) {
       tempMax.innerHTML = `Max temperature: <span>${maxTemp} <sup>°</sup>C</span>`;
       feelsLike.innerHTML = `<span>feels like ${feels}</span>`;
       humidity.innerHTML = `Humidity: <span>${humid}%</span>`;
+      // animated icon from https://bas.dev/work/meteocons
       icon.innerHTML = `<img src="/animated-icon/${data["weather"]["0"]["icon"]}.svg" style= 'height:10rem'/>`;
       // icon.innerHTML = `<img src="/static-icon/${data["weather"]["0"]["icon"]}.png" style= 'height:10rem'/>`;
       // images from openweathermap.org also work
+      // refer https://openweathermap.org/weather-conditions for file name and icon image
       // icon.innerHTML = `<img src="https://openweathermap.org/img/wn/${data["weather"]["0"]["icon"]}@2x.png" style= 'height:10rem'/>`;
     } else {
       msg.textContent = "Please search for a valid city";
