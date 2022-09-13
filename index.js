@@ -1,6 +1,12 @@
-import { apiKey } from "./config.js";
+// the apiKey is stored in config.js, and that file will not check in to the github
+// to run this program, first create an account in openweathermap.org, choose the api
+// and generate a key, then create a file called config.js with following codes:
+//
+// const apiKey = "put the key here";
+// export { apiKey };
+// import { apiKey } from "./config.js";
+//
 
-// const form = document.querySelector(".top-banner form");
 const form = document.getElementById("weather-form");
 const cityInput = document.getElementById("city-input");
 const msg = document.getElementById("msg");
@@ -17,6 +23,7 @@ const weatherDetail = document.getElementById("weather-detail");
 
 form.addEventListener("submit", searchWeather);
 
+// clear any previous weather data in container when search city not found
 function resetForm() {
   weatherDetail.textContent = "";
   icon.innerHTML = "";
@@ -30,14 +37,23 @@ function resetForm() {
   tempMax.innerHTML = "";
 }
 
+// call openweathermap.org for input city weather
 async function searchWeather(event) {
+  // call preventDefault to avoid refresh the screen and clear up all data returned
+  // from server
   event.preventDefault();
+
+  // get user input. valid input (city, country) e.g. 1) London, GB 2) Markham,
+  // 3) London, CA
   const inputVal = cityInput.value;
 
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputVal}&appid=${apiKey}&units=metric`;
+  // Assume that only one record per input city, so set limit=1 in the fetch url
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputVal}&limit=1&appid=${apiKey}&units=metric`;
 
   try {
     const response = await fetch(url);
+
+    // if fetch success, retrieve json data based on the format as the sample-data.txt
     if (response.ok) {
       const data = await response.json();
 
@@ -52,17 +68,17 @@ async function searchWeather(event) {
       var maxTemp = data.main.temp_max;
       var feels = data.main.feels_like;
 
-      msg.innerHTML = "&nbsp;";
+      msg.innerHTML = "Last Updated: " + new Date().toLocaleString();
       weatherDetail.textContent = "Weather Detail:";
-      icon.innerHTML = `<img src="/animated-icon/${data["weather"]["0"]["icon"]}.svg" style= 'height:10rem'/>`;
-      feelsLike.innerHTML = `<span>feels like ${feels}</span>`;
-      humidity.innerHTML = `Humidity: <span>${humid}%</span>`;
       city.innerHTML = `${nameval} Weather`;
       temp.innerHTML = `Temperature: <span>${tempature} <sup>°</sup>C</span>`;
       description.innerHTML = `Sky Conditions: <span>${descrip}<span>`;
       wind.innerHTML = `Wind Speed: <span>${wndspd} km/h<span>`;
       tempMin.innerHTML = `Min temperature: <span>${minTemp} <sup>°</sup>C</span>`;
       tempMax.innerHTML = `Max temperature: <span>${maxTemp} <sup>°</sup>C</span>`;
+      feelsLike.innerHTML = `<span>feels like ${feels}</span>`;
+      humidity.innerHTML = `Humidity: <span>${humid}%</span>`;
+      icon.innerHTML = `<img src="/animated-icon/${data["weather"]["0"]["icon"]}.svg" style= 'height:10rem'/>`;
       // icon.innerHTML = `<img src="/static-icon/${data["weather"]["0"]["icon"]}.png" style= 'height:10rem'/>`;
       // images from openweathermap.org also work
       // icon.innerHTML = `<img src="https://openweathermap.org/img/wn/${data["weather"]["0"]["icon"]}@2x.png" style= 'height:10rem'/>`;
@@ -71,6 +87,8 @@ async function searchWeather(event) {
       resetForm();
     }
   } catch (err) {
+    // if user input an invalid city name, so status 404 record not found returned from
+    // weather server
     msg.textContent = "Please search for a valid city";
     resetForm();
     console.error(err);

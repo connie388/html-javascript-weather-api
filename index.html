@@ -13,20 +13,24 @@
     <link href="weather.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
+    <!-- padding top 3em and text color black -->
     <div class="container pt-3 text-dark">
+      <!-- font weight semibold (i.e. 600), put text in center -->
       <h1 class="fw-semibold text-center">Today Weather</h1>
 
       <div class="d-flex justify-content-center">
+        <!-- put the input field and button inline and in center -->
         <form
           id="weather-form"
           class="form-inline d-flex justify-content-center"
         >
+          <!-- define as form-floating so the label will be inside the input box -->
+          <!-- mb-2 so that margin bottom 2em -->
           <div id="city-input-container" class="form-floating">
             <input
               id="city-input"
               type="text"
               class="form-control fs-6 mb-2"
-              placeholder="Search for a city"
               autofocus
               required
             />
@@ -36,28 +40,34 @@
           <button type="submit" class="btn btn-primary mb-2">Submit</button>
         </form>
       </div>
+      <!-- information message after submit -->
       <div id="msg" class="d-flex justify-content-center fs-6">&nbsp</div>
     </div>
 
+    <!-- padding top 3em between input container and weather detail -->
     <div
       id="weather-container"
       class="container d-flex justify-content-center pt-3"
     >
       <div>
         <h2 id="city" class="fw-semibold text-center"></h2>
+        <!-- put following divs in center -->
         <div class="d-flex align-items-center">
+          <!--  inline-block (divs side-by-side) with padding left and right 3em  -->
           <div class="d-inline-block px-3">
             <div id="temp" class="fs-4"></div>
             <div id="feels-like" class="fs-6"></div>
           </div>
           <div class="d-inline-block px-3">
             <div id="weather-detail" class="fs-4 text-center"></div>
+            <!-- set font-size to fs-6 = 16px, fs-5 = 20px-->
             <div id="wind" class="fs-6"></div>
             <div id="temp-min" class="fs-6"></div>
             <div id="temp-max" class="fs-6"></div>
             <div id="humidity" class="fs-6"></div>
           </div>
         </div>
+        <!-- put the following image center with padding top 3em -->
         <div class="container d-flex justify-content-center pt-3">
           <figure>
             <p id="icon" class="fs-4"></p>
