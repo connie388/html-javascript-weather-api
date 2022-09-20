@@ -4,8 +4,7 @@
 //
 // const apiKey = "put the key here";
 // export { apiKey };
-// import { apiKey } from "./config.js";
-//
+import { apiKey } from "./config.js";
 
 const form = document.getElementById("weather-form");
 const cityInput = document.getElementById("city-input");
